@@ -5,7 +5,7 @@
       "title": "E Commerce Site",
       "description": "A comprehensive and modern MERN Stack E-Shop Application featuring user authentication, product listings, shopping cart functionality, and an administrative dashboard. It utilizes a sleek design with Tailwind CSS, Redux Toolkit for state management, reusable components, and dynamic product image support.",
       "tech_stack": "React \nRedux Toolkit\nTailwind CSS\nNode.js\nExpress.js\nNode.js.\nMongoDB \nJWT Authentication\nMulter\nDotenv",
-      "image_url": "https://sjvmxasixymmxgbezmzu.supabase.co/storage/v1/object/public/portfolio-assets/Screenshot%202026-03-01%20230314.png",
+      "image_url": "/assets/ecomm.png",
       "github_link": "https://github.com/nbdyknws-abhi/E-Shop",
       "live_link": "https://chopper-town.onrender.com/",
       "created_at": "2026-03-01T17:34:08.027826"
@@ -16,14 +16,14 @@
       "id": "3e584022-1971-42a4-9a85-eff9cd139137",
       "name": "Arpan Chakraborty",
       "role": "Data Analyst",
-      "image_url": "https://sjvmxasixymmxgbezmzu.supabase.co/storage/v1/object/public/portfolio-assets/lamda.jpeg",
+      "image_url": "/assets/lamda.jpeg",
       "created_at": "2026-03-01T22:40:24"
     },
     {
       "id": "61bca97b-3b12-4886-9e92-b408ac1afe6d",
       "name": "Subhadeep Pan",
       "role": ".net developer",
-      "image_url": "https://sjvmxasixymmxgbezmzu.supabase.co/storage/v1/object/public/portfolio-assets/pan.jpeg",
+      "image_url": "/assets/pan.jpeg",
       "created_at": "2026-03-01T22:56:54"
     },
     {

@@ -6,13 +6,21 @@ const ProjectCard = ({ project }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    };
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
     } else {
       document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
     }
     return () => {
       document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isModalOpen]);
 
@@ -131,7 +139,7 @@ const ProjectCard = ({ project }) => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto custom-scrollbar glass bg-white/95 dark:bg-dark/95 border border-slate-200 dark:border-white/10 rounded-[2rem] md:rounded-[3rem] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-12 p-6 md:p-10"
+              className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto custom-scrollbar glass bg-white/95 dark:bg-dark/95 border border-slate-200 dark:border-white/10 rounded-2rem md:rounded-[3rem] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-12 p-6 md:p-10"
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-title"
@@ -140,10 +148,10 @@ const ProjectCard = ({ project }) => {
             >
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 p-3 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 rounded-full transition-colors z-10"
+                className="absolute top-4 right-4 md:top-6 md:right-6 p-3 bg-slate-900/50 dark:bg-white/20 hover:bg-slate-900/70 dark:hover:bg-red/30 text-red-500 dark:text-red-800 rounded-full transition-colors z-110 backdrop-blur-md shadow-lg"
                 aria-label="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
               {/* Modal Image */}

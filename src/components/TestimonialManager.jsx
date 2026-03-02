@@ -14,6 +14,15 @@ const TestimonialManager = () => {
   });
   const [submitting, setSubmitting] = useState(false);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setIsModalOpen(false);
+    };
+    if (isModalOpen) window.addEventListener("keydown", handleKeyDown);
+    else window.removeEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
+
   const handleOpenModal = (item = null) => {
     if (item) {
       setEditing(item);
@@ -86,8 +95,20 @@ const TestimonialManager = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-dark/60 backdrop-blur-sm">
-          <div className="glass w-full max-w-lg rounded-[2.5rem] p-8 relative">
+        <div
+          className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-dark/60 backdrop-blur-sm"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="glass w-full max-w-lg rounded-[2.5rem] p-8 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-6 right-6 p-2 hover:bg-slate-100 dark:hover:bg-dark-lighter rounded-full"
+            >
+              <X />
+            </button>
             <h2 className="text-2xl font-bold mb-6">
               {editing ? "Edit Testimonial" : "New Testimonial"}
             </h2>

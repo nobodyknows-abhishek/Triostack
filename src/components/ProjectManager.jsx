@@ -25,12 +25,30 @@ const ProjectManager = () => {
   });
   const [submitting, setSubmitting] = useState(false);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    };
+    if (isModalOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      window.removeEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
+
   const handleOpenModal = (project = null) => {
     if (project) {
       setEditingProject(project);
       setFormData({
         ...project,
-        tech_stack: project.tech_stack?.join(", ") || "",
+        tech_stack: Array.isArray(project.tech_stack)
+          ? project.tech_stack.join(", ")
+          : typeof project.tech_stack === "string"
+            ? project.tech_stack
+            : "",
       });
     } else {
       setEditingProject(null);
@@ -124,14 +142,25 @@ const ProjectManager = () => {
                   {p.description}
                 </p>
                 <div className="mt-auto flex flex-wrap gap-1">
-                  {p.tech_stack?.map((t, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-0.5 bg-slate-200 dark:bg-dark-lighter text-[10px] rounded-md font-medium"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {Array.isArray(p.tech_stack)
+                    ? p.tech_stack.map((t, i) => (
+                        <span
+                          key={i}
+                          className="px-2 py-0.5 bg-slate-200 dark:bg-dark-lighter text-[10px] rounded-md font-medium"
+                        >
+                          {t}
+                        </span>
+                      ))
+                    : typeof p.tech_stack === "string"
+                      ? p.tech_stack.split(",").map((t, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 bg-slate-200 dark:bg-dark-lighter text-[10px] rounded-md font-medium"
+                          >
+                            {t.trim()}
+                          </span>
+                        ))
+                      : null}
                 </div>
               </div>
             ))}
